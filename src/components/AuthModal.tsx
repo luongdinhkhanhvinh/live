@@ -2,12 +2,18 @@
 
 import { useState, useEffect } from "react";
 
+interface UserData {
+  email: string;
+  name: string;
+  isLoggedIn: boolean;
+}
+
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialMode?: 'login' | 'register';
   onModeChange?: (mode: 'login' | 'register') => void;
-  onLoginSuccess?: (userData: any) => void;
+  onLoginSuccess?: (userData: UserData) => void;
 }
 
 export default function AuthModal({ isOpen, onClose, initialMode = 'login', onModeChange, onLoginSuccess }: AuthModalProps) {
@@ -37,7 +43,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onMo
     if (isLogin) {
       // Handle login with sample account
       if (formData.email === 'user@gmail.com' && formData.password === '123456') {
-        const userData = {
+        const userData: UserData = {
           email: formData.email,
           name: 'User Demo',
           isLoggedIn: true

@@ -16,6 +16,11 @@ import { useScreenLock } from "@/components/ScreenLockContext";
 
 type Params = { match?: string; streamer?: string; id?: string };
 
+interface UserData {
+  email: string;
+  name: string;
+  isLoggedIn: boolean;
+}
 
 
 export default function LiveDetail({ params }: { params: Promise<Params> }) {
@@ -68,7 +73,7 @@ export default function LiveDetail({ params }: { params: Promise<Params> }) {
     };
   }, [isScreenLocked]);
 
-  const handleLoginSuccess = (userData: any) => {
+  const handleLoginSuccess = (userData: UserData) => {
     setIsLoggedIn(true);
     console.log("User logged in:", userData);
   };

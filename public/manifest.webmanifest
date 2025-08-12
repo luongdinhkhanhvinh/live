@@ -1,11 +1,23 @@
 {
-  "name": "NGOAIHANG TV",
+  "name": "NGOAIHANG TV - Trực tiếp bóng đá online",
   "short_name": "NGOAIHANG",
+  "description": "Xem trực tiếp bóng đá hôm nay chất lượng cao, miễn phí",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#0f1214",
   "theme_color": "#0f1214",
+  "categories": ["sports", "entertainment", "news"],
+  "lang": "vi",
+  "dir": "ltr",
+  "prefer_related_applications": false,
   "icons": [
+    {
+      "src": "/web-app-manifest-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
     {
       "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
@@ -15,6 +27,26 @@
       "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Lịch thi đấu",
+      "short_name": "Lịch",
+      "description": "Xem lịch thi đấu hôm nay",
+      "url": "/bxh-va-lich-thi-dau/lich-thi-dau"
+    },
+    {
+      "name": "Bảng xếp hạng",
+      "short_name": "BXH",
+      "description": "Xem bảng xếp hạng các giải đấu",
+      "url": "/bxh-va-lich-thi-dau/bxh"
+    },
+    {
+      "name": "Tin tức",
+      "short_name": "Tin tức",
+      "description": "Đọc tin tức bóng đá mới nhất",
+      "url": "/tin-tuc"
     }
   ]
 }

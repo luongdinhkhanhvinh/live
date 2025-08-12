@@ -40,9 +40,10 @@ function LiveChip({ href, label }: { href: string; label: string }) {
   );
 }
 
-export default function Page({ searchParams }: { searchParams: { [k: string]: string | string[] | undefined } }) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ [k: string]: string | string[] | undefined }> }) {
   // read ?ngay=DD-MM-YYYY
-  const ngayParam = typeof searchParams["ngay"] === "string" ? (searchParams["ngay"] as string) : undefined;
+  const params = await searchParams;
+  const ngayParam = typeof params["ngay"] === "string" ? (params["ngay"] as string) : undefined;
 
   let selectedDate: Date;
   if (!ngayParam) {

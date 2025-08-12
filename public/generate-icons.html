@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PWA Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0f1214;
+            color: white;
+        }
+        .icon-preview {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+        .download-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎯 Tạo Icon PWA cho NGOAIHANG TV</h1>
+    <p>Click vào nút download để tải icon đúng kích thước</p>
+    
+    <div id="icon-container"></div>
+
+    <script>
+        function generateIcon(size, text) {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#1e40af');
+            gradient.addColorStop(1, '#3b82f6');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Add some design elements
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.arc(size * 0.8, size * 0.2, size * 0.15, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.15}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('NGOAI', size * 0.5, size * 0.4);
+            ctx.fillText('HANG', size * 0.5, size * 0.6);
+            ctx.fillText('TV', size * 0.5, size * 0.8);
+            
+            return canvas;
+        }
+        
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        const sizes = [144, 192, 512];
+        const container = document.getElementById('icon-container');
+        
+        sizes.forEach(size => {
+            const div = document.createElement('div');
+            div.className = 'icon-preview';
+            
+            const canvas = generateIcon(size, `NGOAIHANG TV ${size}x${size}`);
+            const downloadBtn = document.createElement('a');
+            downloadBtn.href = '#';
+            downloadBtn.className = 'download-btn';
+            downloadBtn.textContent = `Download ${size}x${size}`;
+            downloadBtn.onclick = (e) => {
+                e.preventDefault();
+                downloadCanvas(canvas, `web-app-manifest-${size}x${size}.png`);
+            };
+            
+            div.appendChild(canvas);
+            div.appendChild(downloadBtn);
+            container.appendChild(div);
+        });
+    </script>
+</body>
+</html>

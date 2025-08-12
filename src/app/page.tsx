@@ -63,12 +63,12 @@ export default function HomePage() {
           />
           
           {/* Match Info Overlay at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 pointer-events-none">
+          {/* <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 pointer-events-none">
             <div className="text-center text-white">
               <div className="text-lg font-bold">Crystal Palace vs Liverpool</div>
               <div className="text-sm text-gray-200">Đang diễn ra - Hiệp 2</div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 

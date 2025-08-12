@@ -29,8 +29,9 @@ function getDaysRange(center = new Date()) {
   return days;
 }
 
-export default function ScoresPage({ searchParams }: { searchParams: { [k: string]: string | string[] | undefined } }) {
-  const ngayParam = typeof searchParams["ngay"] === "string" ? (searchParams["ngay"] as string) : undefined;
+export default async function ScoresPage({ searchParams }: { searchParams: Promise<{ [k: string]: string | string[] | undefined }> }) {
+  const params = await searchParams;
+  const ngayParam = typeof params["ngay"] === "string" ? (params["ngay"] as string) : undefined;
   let selectedDate: Date;
   if (!ngayParam) selectedDate = new Date();
   else {

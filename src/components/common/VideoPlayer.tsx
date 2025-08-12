@@ -29,6 +29,31 @@ interface VideoPlayerProps {
   onJoinClick?: () => void;
 }
 
+interface ArtPlayerOptions {
+  container: HTMLElement;
+  url: string;
+  autoplay: boolean;
+  volume: number;
+  muted: boolean;
+  theme: string;
+  fullscreen: boolean;
+  fullscreenWeb: boolean;
+  pip: boolean;
+  autoMini: boolean;
+  lock: boolean;
+  lang: string;
+  disableContextMenu: boolean;
+  controls: Array<{
+    position: string;
+    index: number;
+    html: string;
+    click: () => void;
+  }>;
+  customType: {
+    m3u8: (video: HTMLVideoElement, url: string) => void;
+  };
+}
+
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   videoUrl = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
   className = '',
@@ -61,7 +86,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     
     async function setup() {
       try {
-        const ArtMod = (await import("artplayer")) as unknown as { default: new (options: any) => ArtInstance };
+        const ArtMod = (await import("artplayer")) as unknown as { default: new (options: ArtPlayerOptions) => ArtInstance };
         const HlsMod = (await import("hls.js")) as unknown as { default: HlsClass };
         const Artplayer = ArtMod.default;
         const Hls = HlsMod.default;
@@ -103,7 +128,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
               }
             },
           },
-        } as unknown as Record<string, unknown>);
+        } as ArtPlayerOptions);
 
         // If src ends with .m3u8, hint ArtPlayer
         if (videoUrl.endsWith(".m3u8")) {

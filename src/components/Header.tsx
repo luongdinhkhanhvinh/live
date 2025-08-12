@@ -6,6 +6,7 @@ import { useState } from "react";
 import AuthModal from "./AuthModal";
 import { useTheme } from "./ThemeProvider";
 import { useScreenLock } from "./ScreenLockContext";
+import InstallPWA from "./InstallPWA";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +43,14 @@ export default function Header() {
       <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/70 shadow-sm">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-3">
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/ngoaihangtv.png" alt="NGOAIHANG TV Logo" width={120} height={32} priority />
+            <Image 
+              src="/ngoaihangtv.png" 
+              alt="NGOAIHANG TV Logo" 
+              width={120} 
+              height={32} 
+              priority 
+              style={{ width: 'auto', height: 'auto' }}
+            />
           </Link>
           
           <nav className="hidden md:flex items-center gap-5 text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -92,6 +100,9 @@ export default function Header() {
                 </svg>
               )}
             </button>
+            
+            {/* PWA Install Button */}
+            <InstallPWA />
             
             {/* Auth buttons */}
             <div className="hidden md:flex items-center gap-2">
@@ -176,7 +187,6 @@ export default function Header() {
                 >
                   TUYỂN DỤNG
                 </Link>
-
               </div>
               
               {/* Divider */}

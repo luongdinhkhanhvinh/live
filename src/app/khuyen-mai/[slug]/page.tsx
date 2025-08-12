@@ -64,8 +64,9 @@ const PROMOS: Record<string, { title: string; badge: string; img: string; conten
   },
 };
 
-export default function PromoDetail({ params }: { params: { slug: string } }) {
-  const data = PROMOS[params.slug];
+export default async function PromoDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const data = PROMOS[resolvedParams.slug];
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
       <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">

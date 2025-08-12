@@ -1,8 +1,3 @@
-"use client";
-
-import Link from "next/link";
-import { useState } from "react";
-
 const JOBS: Record<string, { title: string; dept: string; type: string; location: string; desc: string[]; req: string[]; benefits: string[] }> = {
   "binh-luan-vien": {
     title: "Bình luận viên (BLV)",
@@ -63,10 +58,21 @@ const JOBS: Record<string, { title: string; dept: string; type: string; location
   },
 };
 
-export default function JobDetailPage({ params }: { params: { slug: string } }) {
-  const data = JOBS[params.slug];
-  const [sent, setSent] = useState(false);
+interface JobData {
+  title: string;
+  dept: string;
+  type: string;
+  location: string;
+  desc: string[];
+  req: string[];
+  benefits: string[];
+}
 
+async function getJobData(slug: string): Promise<JobData | undefined> {
+  return JOBS[slug];
+}
+
+function JobDetailContent({ data }: { data: JobData | undefined }) {
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
       <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
@@ -82,19 +88,19 @@ export default function JobDetailPage({ params }: { params: { slug: string } }) 
             <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Mô tả công việc</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
-                {(data?.desc ?? ["Mô tả đang cập nhật."]).map((t, i) => <li key={i}>{t}</li>)}
+                {(data?.desc ?? ["Mô tả đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
               </ul>
             </div>
             <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Yêu cầu</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
-                {(data?.req ?? ["Yêu cầu đang cập nhật."]).map((t, i) => <li key={i}>{t}</li>)}
+                {(data?.req ?? ["Yêu cầu đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
               </ul>
             </div>
             <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Quyền lợi</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
-                {(data?.benefits ?? ["Quyền lợi đang cập nhật."]).map((t, i) => <li key={i}>{t}</li>)}
+                {(data?.benefits ?? ["Quyền lợi đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
               </ul>
             </div>
           </div>
@@ -102,28 +108,20 @@ export default function JobDetailPage({ params }: { params: { slug: string } }) 
           <aside className="lg:col-span-4">
             <div id="apply" className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Ứng tuyển</div>
-              {sent ? (
-                <div className="rounded-md bg-green-50 dark:bg-green-900/20 p-3 text-sm text-green-700 dark:text-green-400">Đã gửi thông tin (mock). Cảm ơn bạn!</div>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setSent(true);
-                  }}
-                  className="space-y-3"
-                >
-                  <div className="grid grid-cols-1 gap-3">
-                    <input className="rounded-md border border-zinc-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-gray-400 outline-none focus:border-zinc-400 dark:focus:border-gray-500" placeholder="Họ và tên" required />
-                    <input type="email" className="rounded-md border border-zinc-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-zinc-900 dark:text-white placeholder-zinc-500 dark:placeholder-gray-400 outline-none focus:border-zinc-400 dark:focus:border-gray-500" placeholder="Email" required />
-                    <input type="file" className="rounded-md border border-zinc-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-zinc-900 dark:text-white" />
-                  </div>
-                  <button className="w-full rounded-md bg-black dark:bg-white px-3 py-2 text-sm font-semibold text-white dark:text-black hover:opacity-90" type="submit">Gửi hồ sơ</button>
-                </form>
-              )}
+              <div className="rounded-md bg-blue-50 dark:bg-blue-900/20 p-3 text-sm text-blue-700 dark:text-blue-400">
+                Chức năng ứng tuyển đang được phát triển. Vui lòng liên hệ trực tiếp để biết thêm thông tin.
+              </div>
             </div>
           </aside>
         </div>
       </section>
     </main>
   );
+}
+
+export default async function JobDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const data = await getJobData(resolvedParams.slug);
+  
+  return <JobDetailContent data={data} />;
 }

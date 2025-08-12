@@ -24,8 +24,9 @@ const MAP: Record<string, { title: string; date: string; img: string; content: s
   },
 };
 
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const data = MAP[params.slug];
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const data = MAP[resolvedParams.slug];
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
       <header className="sticky top-0 z-40 border-b border-zinc-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur">
@@ -64,7 +65,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         <div className="text-sm font-semibold text-zinc-900 dark:text-white">Bài viết liên quan</div>
         <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {Object.entries(MAP)
-            .filter(([slug]) => slug !== params.slug)
+            .filter(([slug]) => slug !== resolvedParams.slug)
             .map(([slug, a]) => (
               <Link key={slug} href={`/tin-tuc/${slug}`} className="overflow-hidden rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-zinc-50 dark:hover:bg-gray-700">
                 <div className="relative aspect-[16/9] bg-zinc-50 dark:bg-gray-700">
