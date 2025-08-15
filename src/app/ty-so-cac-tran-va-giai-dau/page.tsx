@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,7 +32,8 @@ function getDaysRange(center = new Date()) {
   return days;
 }
 
-export default function ScoresPage({ searchParams }: { searchParams: { [k: string]: string | string[] | undefined } }) {
+export default function ScoresPage({ searchParams }: { searchParams: Promise<{ [k: string]: string | string[] | undefined }> }) {
+  const resolvedSearchParams = use(searchParams);
   const [activeTab, setActiveTab] = useState(0);
   const [mounted, setMounted] = useState(false);
   
@@ -52,7 +53,7 @@ export default function ScoresPage({ searchParams }: { searchParams: { [k: strin
   useEffect(() => {
     setMounted(true);
     
-    const ngayParam = typeof searchParams["ngay"] === "string" ? searchParams["ngay"] : undefined;
+    const ngayParam = typeof resolvedSearchParams["ngay"] === "string" ? resolvedSearchParams["ngay"] : undefined;
     let newSelectedDate: Date;
     if (!ngayParam) {
       newSelectedDate = new Date();
@@ -63,7 +64,7 @@ export default function ScoresPage({ searchParams }: { searchParams: { [k: strin
     
     setSelectedDate(newSelectedDate);
     setDays(getDaysRange(newSelectedDate));
-  }, [searchParams]);
+  }, [resolvedSearchParams]);
 
   const groups = [
     {
