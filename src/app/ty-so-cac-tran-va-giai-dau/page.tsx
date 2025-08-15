@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -29,16 +32,38 @@ function getDaysRange(center = new Date()) {
   return days;
 }
 
-export default async function ScoresPage({ searchParams }: { searchParams: Promise<{ [k: string]: string | string[] | undefined }> }) {
-  const params = await searchParams;
-  const ngayParam = typeof params["ngay"] === "string" ? (params["ngay"] as string) : undefined;
-  let selectedDate: Date;
-  if (!ngayParam) selectedDate = new Date();
-  else {
-    const [d, m, y] = ngayParam.split("-").map((v) => parseInt(v, 10));
-    selectedDate = new Date(y, m - 1, d);
-  }
-  const days = getDaysRange(selectedDate);
+export default function ScoresPage({ searchParams }: { searchParams: { [k: string]: string | string[] | undefined } }) {
+  const [activeTab, setActiveTab] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  
+  // Sports tabs with icons
+  const tabs = [
+    { label: "Bóng đá", icon: "/icon/bong-da.svg", iconActive: "/icon/bong-da-active.svg" },
+    { label: "Bóng rổ", icon: "/icon/bong-ro.svg", iconActive: "/icon/bong-ro-active.svg" },
+    { label: "Bóng chuyền", icon: "/icon/bong-chuyen.svg", iconActive: "/icon/bong-chuyen-active.svg" },
+    { label: "Talk show", icon: "/icon/talk-show.svg", iconActive: "/icon/talk-show-active.svg" },
+    { label: "Esports", icon: "/icon/esport.svg", iconActive: "/icon/esport-ative.svg" },
+  ];
+
+  // Use useEffect to avoid hydration mismatch
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [days, setDays] = useState<{ date: Date; label: string; sub: string }[]>([]);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const ngayParam = typeof searchParams["ngay"] === "string" ? searchParams["ngay"] : undefined;
+    let newSelectedDate: Date;
+    if (!ngayParam) {
+      newSelectedDate = new Date();
+    } else {
+      const [d, m, y] = ngayParam.split("-").map((v) => parseInt(v, 10));
+      newSelectedDate = new Date(y, m - 1, d);
+    }
+    
+    setSelectedDate(newSelectedDate);
+    setDays(getDaysRange(newSelectedDate));
+  }, [searchParams]);
 
   const groups = [
     {
@@ -55,30 +80,58 @@ export default async function ScoresPage({ searchParams }: { searchParams: Promi
     },
   ];
 
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-custom-light">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-lg">Loading...</div>
+        </div>
+      </main>
+    );
+  }
+
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
+    <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-custom-light">
       {/* Sports tabs */}
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-zinc-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
         <div className="py-3">
           <div className="flex flex-wrap items-center gap-2">
-            {["Bóng đá", "Bóng rổ", "Bóng chuyền", "Talk show", "Esports"].map((s, i) => (
-              <button key={s} className={`rounded-full px-4 py-1.5 text-sm ${i === 0 ? "bg-black dark:bg-white text-white dark:text-black" : "bg-zinc-100 dark:bg-gray-700 text-zinc-700 dark:text-gray-300 hover:bg-zinc-200 dark:hover:bg-gray-600"}`}>{s}</button>
+            {tabs.map((tab, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition-all duration-200 ${
+                  activeTab === index
+                    ? "bg-white dark:bg-custom-dark border-blue-500 text-blue-600 dark:text-blue-400"
+                    : "border-transparent text-gray-700 dark:text-custom-muted hover:text-gray-900 dark:hover:text-custom-light"
+                }`}
+              >
+                <Image
+                  src={activeTab === index ? tab.iconActive : tab.icon}
+                  alt={tab.label}
+                  width={16}
+                  height={16}
+                  className="w-4 h-4"
+                />
+                {tab.label}
+              </button>
             ))}
           </div>
         </div>
       </section>
 
       {/* Date scroller */}
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-zinc-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
         <div className="py-3">
           <div className="no-scrollbar flex gap-2 overflow-x-auto">
             {days.map(({ date, label, sub }) => {
               const dstr = formatDateLabel(date);
               const active = dstr === formatDateLabel(selectedDate);
               return (
-                <Link key={dstr} href={`?ngay=${dstr}`} className={`flex min-w-[84px] flex-col items-center justify-center rounded-lg border px-3 py-2 ${active ? "border-black dark:border-white bg-zinc-50 dark:bg-gray-700" : "border-zinc-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-zinc-50 dark:hover:bg-gray-700"}`}>
-                  <span className="text-base font-semibold leading-none text-zinc-900 dark:text-white">{label}</span>
-                  <span className="text-[11px] text-zinc-500 dark:text-gray-400">{sub}</span>
+                <Link key={dstr} href={`?ngay=${dstr}`} className={`flex min-w-[84px] flex-col items-center justify-center rounded-lg border px-3 py-2 ${active ? "border-blue-600 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20" : "border-zinc-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark hover:bg-zinc-50 dark:hover:bg-custom-dark-secondary"}`}>
+                  <span className="text-base font-semibold leading-none text-zinc-900 dark:text-custom-light">{label}</span>
+                  <span className="text-[11px] text-zinc-500 dark:text-custom-subtle">{sub}</span>
                 </Link>
               );
             })}
@@ -89,27 +142,27 @@ export default async function ScoresPage({ searchParams }: { searchParams: Promi
       {/* Groups */}
       <section className="py-6">
         {groups.map((g) => (
-          <div key={g.league} className="mb-5 overflow-hidden rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-gray-600 px-4 py-3">
+          <div key={g.league} className="mb-5 overflow-hidden rounded-xl border border-zinc-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-custom-dark-secondary px-4 py-3">
               <div className="flex items-center gap-2">
                 <Image src="https://ext.same-assets.com/63664259/3956261281.png" alt="league" width={20} height={20} />
-                <span className="text-sm font-semibold text-zinc-800 dark:text-white">{g.league}</span>
+                <span className="text-sm font-semibold text-zinc-800 dark:text-custom-light">{g.league}</span>
               </div>
-              <span className="text-sm text-zinc-600 dark:text-gray-400">{formatDateLabel(selectedDate)}</span>
+              <span className="text-sm text-zinc-600 dark:text-custom-subtle">{formatDateLabel(selectedDate)}</span>
             </div>
-            <div className="divide-y divide-zinc-200 dark:divide-gray-600">
+            <div className="divide-y divide-zinc-200 dark:divide-custom-dark-secondary">
               {g.matches.map((m, idx) => (
-                <Link key={idx} href={m.href} className="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-gray-700">
-                  <span className="w-16 text-sm text-zinc-600 dark:text-gray-400">{m.time}</span>
+                <Link key={idx} href={m.href} className="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-custom-dark-secondary">
+                  <span className="w-16 text-sm text-zinc-600 dark:text-custom-subtle">{m.time}</span>
                   <div className="flex min-w-0 flex-1 items-center justify-between gap-3">
                     <div className="flex min-w-0 items-center gap-2">
-                      <span className="truncate text-zinc-800 dark:text-white">{m.home}</span>
-                      <span className="text-zinc-400 dark:text-gray-500">vs</span>
-                      <span className="truncate text-zinc-800 dark:text-white">{m.away}</span>
+                      <span className="truncate text-zinc-800 dark:text-custom-light">{m.home}</span>
+                      <span className="text-zinc-400 dark:text-custom-subtle">vs</span>
+                      <span className="truncate text-zinc-800 dark:text-custom-light">{m.away}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="rounded bg-zinc-100 dark:bg-gray-700 px-2 py-0.5 text-xs font-semibold text-zinc-700 dark:text-gray-300">{m.status}</span>
-                      <span className="w-16 text-center text-sm font-semibold text-zinc-900 dark:text-white">{m.score}</span>
+                      <span className="rounded bg-zinc-100 dark:bg-custom-dark-secondary px-2 py-0.5 text-xs font-semibold text-zinc-700 dark:text-custom-muted">{m.status}</span>
+                      <span className="w-16 text-center text-sm font-semibold text-zinc-900 dark:text-custom-light">{m.score}</span>
                       {m.live && (<span className="inline-flex items-center gap-1 rounded-full bg-red-50 dark:bg-red-900/20 px-2 py-0.5 text-[11px] font-semibold text-red-600 dark:text-red-400"><span className="h-1.5 w-1.5 rounded-full bg-red-600"/>LIVE</span>)}
                     </div>
                   </div>

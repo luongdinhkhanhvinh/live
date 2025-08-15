@@ -19,8 +19,8 @@ const JOBS: Job[] = [
 
 export default function CareersPage() {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+    <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-white">
+      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-10">
           <h1 className="text-3xl font-bold">Gia nhập NgoaiHangTV</h1>
           <p className="mt-2 max-w-2xl text-zinc-600 dark:text-gray-300">Cùng xây dựng nền tảng thể thao trực tuyến hấp dẫn nhất. Ứng tuyển vị trí phù hợp bên dưới.</p>
@@ -28,10 +28,10 @@ export default function CareersPage() {
       </section>
 
       {/* Filters (mock) */}
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-4">
           <div className="flex flex-wrap gap-2">
-            <button className="rounded-full bg-black dark:bg-white px-4 py-1.5 text-sm font-semibold text-white dark:text-black">Tất cả</button>
+            <button className="rounded-full bg-blue-600 dark:bg-blue-500 px-4 py-1.5 text-sm font-semibold text-white dark:text-white">Tất cả</button>
             <button className="rounded-full bg-zinc-100 dark:bg-gray-700 px-4 py-1.5 text-sm text-zinc-700 dark:text-gray-300 hover:bg-zinc-200 dark:hover:bg-gray-600">Nội dung</button>
             <button className="rounded-full bg-zinc-100 dark:bg-gray-700 px-4 py-1.5 text-sm text-zinc-700 dark:text-gray-300 hover:bg-zinc-200 dark:hover:bg-gray-600">Sản xuất</button>
             <button className="rounded-full bg-zinc-100 dark:bg-gray-700 px-4 py-1.5 text-sm text-zinc-700 dark:text-gray-300 hover:bg-zinc-200 dark:hover:bg-gray-600">Marketing</button>
@@ -44,7 +44,7 @@ export default function CareersPage() {
       <section className="py-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {JOBS.map((j) => (
-            <div key={j.slug} className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm">
+            <div key={j.slug} className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4 shadow-sm">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <div className="text-base font-semibold text-zinc-900 dark:text-white">{j.title}</div>
@@ -54,7 +54,7 @@ export default function CareersPage() {
               </div>
               <div className="mt-4 flex gap-2">
                 <Link href={`/tuyen-dung/${j.slug}`} className="rounded-lg border border-zinc-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-1.5 text-sm font-medium text-zinc-800 dark:text-gray-200 hover:bg-zinc-50 dark:hover:bg-gray-600">Xem chi tiết</Link>
-                <Link href={`/tuyen-dung/${j.slug}#apply`} className="rounded-lg bg-black dark:bg-white px-3 py-1.5 text-sm font-semibold text-white dark:text-black hover:opacity-90">Ứng tuyển</Link>
+                <Link href={`/tuyen-dung/${j.slug}#apply`} className="rounded-lg bg-blue-600 dark:bg-blue-500 px-3 py-1.5 text-sm font-semibold text-white dark:text-white hover:bg-blue-700 dark:hover:bg-blue-600">Ứng tuyển</Link>
               </div>
             </div>
           ))}

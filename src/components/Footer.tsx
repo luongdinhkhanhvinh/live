@@ -7,30 +7,31 @@ import { useScreenLock } from "./ScreenLockContext";
 export default function Footer() {
   const { isScreenLocked } = useScreenLock();
 
-  // Ẩn footer khi màn hình bị khóa
   if (isScreenLocked) {
     return null;
   }
 
   return (
-    <footer className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-      <div className="mx-auto max-w-[1600px] px-4 py-12">
+    <footer className="border-t border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
+      <div className="mx-auto max-w-[1600px] py-12 px-4">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
-          <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
+          {/* Company Info - Chiếm 6 cột (50%) */}
+          <div className="lg:col-span-6 space-y-4">
             <div className="flex items-center gap-3">
               <Image 
                 src="/ngoaihangtv.png" 
                 alt="NgoaiHangTV Logo" 
-                width={120} 
-                height={40} 
-                className="h-10 w-auto"
+                width={150} 
+                height={50} 
+                className="h-12 w-auto"
               />
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-600 dark:text-custom-subtle leading-relaxed">
               NgoaihangTV là nền tảng livestream các sự kiện thể thao, với mục tiêu trở thành nền tảng số hàng đầu khu vực trong lĩnh vực livestream. Chúng tôi quảng bá các hoạt động thể thao như một phần không thể thiếu trong các sự kiện giải trí, mang đến món ăn tinh thần đặc sắc cho các tín đồ yêu thể thao, đặc biệt là bộ môn bóng đá. Với phương châm đặt khách hàng làm trọng tâm, trải nghiệm của quý khách luôn là ưu tiên hàng đầu của đội ngũ phát triển NgoaihangTV. Chúng tôi không ngừng nỗ lực để mang đến dịch vụ livestream chất lượng, đáp ứng mọi nhu cầu của người xem. Để thực hiện điều này, NgoaihangTV liên tục nâng cấp hệ thống, đa dạng hóa các nguồn video và cung cấp chất lượng phát sóng cao nhất. Với đội ngũ Streamer và Bình luận viên chuyên nghiệp, NgoaihangTV cam kết mang đến cho khán giả những sự kiện thể thao hấp dẫn, mãn nhãn khắp châu lục với chất lượng phục vụ và độ phân giải tuyệt vời.
             </p>
+            
+            {/* Social Media Icons */}
             <div className="flex space-x-3">
               <a href="#" className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                 <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -58,73 +59,84 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            
+            {/* DMCA Protected - Di chuyển lên trên desktop */}
+            <div className="pt-2">
+              <a 
+                href="https://www.dmca.com/Protection/Status.aspx?ID=39c3c517-cf2d-4a2f-b009-e69b2fa412a8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block hover:opacity-80 transition-opacity"
+                title="DMCA Protected - Click to verify"
+              >
+                <Image
+                  src="https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=39c3c517-cf2d-4a2f-b009-e69b2fa412a8"
+                  alt="DMCA Protected"
+                  width={200}
+                  height={50}
+                  className="h-[30px] w-auto"
+                />
+              </a>
+            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Liên kết nhanh</h3>
+          {/* Quick Links - Chiếm 2 cột (16.67%) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-custom-light">Liên kết nhanh</h3>
             <ul className="space-y-2">
-              <li><Link href="/" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Trang chủ</Link></li>
-              <li><Link href="/truc-tiep" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Trực tiếp</Link></li>
-              <li><Link href="/lich-truc-tiep" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Lịch trực tiếp</Link></li>
-              <li><Link href="/bxh-va-lich-thi-dau" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Bảng xếp hạng</Link></li>
-              <li><Link href="/tin-tuc" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Tin tức</Link></li>
-              <li><Link href="/khuyen-mai" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Khuyến mãi</Link></li>
+              <li><Link href="/" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Trang chủ</Link></li>
+              <li><Link href="/truc-tiep" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Trực tiếp</Link></li>
+              <li><Link href="/lich-truc-tiep" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Lịch trực tiếp</Link></li>
+              <li><Link href="/bxh-va-lich-thi-dau" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Bảng xếp hạng</Link></li>
+              <li><Link href="/tin-tuc" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Tin tức</Link></li>
+              <li><Link href="/khuyen-mai" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Khuyến mãi</Link></li>
             </ul>
           </div>
 
-          {/* Sports Categories */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Thể thao</h3>
+          {/* Sports Categories - Chiếm 2 cột (16.67%) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-custom-light">Thể thao</h3>
             <ul className="space-y-2">
-              <li><Link href="/the-thao/bong-da" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Bóng đá</Link></li>
-              <li><Link href="/the-thao/bong-ro" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Bóng rổ</Link></li>
-              <li><Link href="/the-thao/bong-chuyen" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Bóng chuyền</Link></li>
-              <li><Link href="/the-thao/tennis" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Tennis</Link></li>
-              <li><Link href="/the-thao/esports" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Esports</Link></li>
-              <li><Link href="/the-thao/talk-show" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Talk show</Link></li>
+              <li><Link href="/the-thao/bong-da" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Bóng đá</Link></li>
+              <li><Link href="/the-thao/bong-ro" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Bóng rổ</Link></li>
+              <li><Link href="/the-thao/bong-chuyen" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Bóng chuyền</Link></li>
+              <li><Link href="/the-thao/tennis" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Tennis</Link></li>
+              <li><Link href="/the-thao/esports" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Esports</Link></li>
+              <li><Link href="/the-thao/talk-show" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Talk show</Link></li>
             </ul>
           </div>
 
-          {/* Support & Legal */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Hỗ trợ & Pháp lý</h3>
+          {/* Support & Legal - Chiếm 2 cột (16.67%) */}
+          <div className="lg:col-span-2 space-y-4">
+            <h3 className="text-base font-semibold text-gray-900 dark:text-custom-light">Hỗ trợ & Pháp lý</h3>
             <ul className="space-y-2">
-              <li><Link href="/lien-he" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Liên hệ</Link></li>
-              <li><Link href="/hoi-dap" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Hỏi đáp</Link></li>
-              <li><Link href="/huong-dan" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Hướng dẫn</Link></li>
-              <li><Link href="/dieu-khoan-dich-vu" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Điều khoản dịch vụ</Link></li>
-              <li><Link href="/chinh-sach-bao-mat" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Chính sách bảo mật</Link></li>
-              <li><Link href="/mien-tru-trach-nhiem" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors">Miễn trừ trách nhiệm</Link></li>
+              <li><Link href="/lien-he" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Liên hệ</Link></li>
+              <li><Link href="/hoi-dap" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Hỏi đáp</Link></li>
+              <li><Link href="/huong-dan" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Hướng dẫn</Link></li>
+              <li><Link href="/dieu-khoan-dich-vu" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Điều khoản dịch vụ</Link></li>
+              <li><Link href="/chinh-sach-bao-mat" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Chính sách bảo mật</Link></li>
+              <li><Link href="/mien-tru-trach-nhiem" className="text-sm text-gray-600 dark:text-custom-subtle hover:text-blue-500 transition-colors">Miễn trừ trách nhiệm</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-200 dark:border-gray-700 mb-6"></div>
+        <div className="border-t border-gray-200 dark:border-custom-dark-secondary mb-6"></div>
 
         {/* Bottom Footer */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-custom-subtle">
             <Link href="/ban-quyen" className="hover:text-blue-500 transition-colors">Bản quyền</Link>
             <Link href="/chinh-sach-bao-mat" className="hover:text-blue-500 transition-colors">Chính sách bảo mật</Link>
             <Link href="/ve-chung-toi" className="hover:text-blue-500 transition-colors">Về chúng tôi</Link>
             <Link href="/tuyen-dung" className="hover:text-blue-500 transition-colors">Tuyển dụng</Link>
           </div>
           
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-gray-600 dark:text-custom-subtle">
             <p>Copyright © 2025 NgoaiHang TV - All rights reserved.</p>
           </div>
         </div>
 
-        {/* Disclaimer */}
-        <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-          <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
-            <strong>Lưu ý:</strong> NgoaiHangTV không sở hữu hoặc phát sóng bất kỳ nội dung thể thao nào. 
-            Chúng tôi chỉ cung cấp liên kết đến các nguồn phát sóng hợp pháp. 
-            Vui lòng tuân thủ luật bản quyền của quốc gia bạn.
-          </p>
-        </div>
       </div>
     </footer>
   );

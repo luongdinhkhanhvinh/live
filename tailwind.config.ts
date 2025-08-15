@@ -49,6 +49,15 @@ export default {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
+        },
+        // Custom dark theme colors
+        custom: {
+          dark: '#090909',
+          'dark-secondary': '#1a1a1a',
+          'dark-muted': '#0f0f0f',
+          'light': '#ffffff',
+          'muted': '#cccccc',
+          'subtle': '#999999'
         }
       },
       borderRadius: {

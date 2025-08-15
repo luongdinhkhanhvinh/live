@@ -74,8 +74,8 @@ async function getJobData(slug: string): Promise<JobData | undefined> {
 
 function JobDetailContent({ data }: { data: JobData | undefined }) {
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+    <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-white">
+      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="mx-auto max-w-4xl px-4 py-8">
           <h1 className="text-3xl font-bold leading-snug">{data?.title ?? "Vị trí tuyển dụng"}</h1>
           <div className="mt-2 text-sm text-zinc-600 dark:text-gray-400">{data?.dept} • {data?.type} • {data?.location}</div>
@@ -85,19 +85,19 @@ function JobDetailContent({ data }: { data: JobData | undefined }) {
       <section className="mx-auto max-w-4xl px-4 py-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-8">
-            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Mô tả công việc</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
                 {(data?.desc ?? ["Mô tả đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
               </ul>
             </div>
-            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Yêu cầu</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
                 {(data?.req ?? ["Yêu cầu đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
               </ul>
             </div>
-            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Quyền lợi</div>
               <ul className="list-disc space-y-1 pl-5 text-sm text-zinc-700 dark:text-gray-300">
                 {(data?.benefits ?? ["Quyền lợi đang cập nhật."]).map((t: string, i: number) => <li key={i}>{t}</li>)}
@@ -106,7 +106,7 @@ function JobDetailContent({ data }: { data: JobData | undefined }) {
           </div>
 
           <aside className="lg:col-span-4">
-            <div id="apply" className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+            <div id="apply" className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
               <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Ứng tuyển</div>
               <div className="rounded-md bg-blue-50 dark:bg-blue-900/20 p-3 text-sm text-blue-700 dark:text-blue-400">
                 Chức năng ứng tuyển đang được phát triển. Vui lòng liên hệ trực tiếp để biết thêm thông tin.

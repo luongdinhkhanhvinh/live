@@ -58,7 +58,7 @@ export default async function FixturesPage({ searchParams }: { searchParams: Pro
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-8">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Lịch thi đấu</h1>
           <p className="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">Xem lịch thi đấu các giải đấu và trận đấu sắp diễn ra.</p>
@@ -66,7 +66,7 @@ export default async function FixturesPage({ searchParams }: { searchParams: Pro
       </section>
 
       {/* Tabs sub */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-3">
           <div className="flex items-center gap-2">
             <Link href="/bxh-va-lich-thi-dau/lich-thi-dau" className="rounded-full bg-blue-600 px-4 py-1.5 text-sm font-semibold text-white">Lịch thi đấu</Link>
@@ -76,14 +76,14 @@ export default async function FixturesPage({ searchParams }: { searchParams: Pro
       </section>
 
       {/* Date scroller */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-3">
           <div className="flex gap-2 overflow-x-auto">
             {days.map(({ date, label, sub }) => {
               const dstr = formatDateLabel(date);
               const active = dstr === formatDateLabel(selectedDate);
               return (
-                <Link key={dstr} href={`?ngay=${dstr}`} className={`flex min-w-[84px] flex-col items-center justify-center rounded-lg border px-3 py-2 transition-colors ${active ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400" : "border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-white dark:hover:bg-gray-700"}`}>
+                <Link key={dstr} href={`?ngay=${dstr}`} className={`flex min-w-[84px] flex-col items-center justify-center rounded-lg border px-3 py-2 transition-colors ${active ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400" : "border-gray-200 dark:border-gray-600 bg-white dark:bg-custom-dark hover:bg-white dark:hover:bg-gray-700"}`}>
                   <span className="text-base font-semibold leading-none text-gray-900 dark:text-white">{label}</span>
                   <span className="text-[11px] text-gray-500 dark:text-gray-400">{sub}</span>
                 </Link>
@@ -96,7 +96,7 @@ export default async function FixturesPage({ searchParams }: { searchParams: Pro
       {/* Matches */}
       <section className="py-6">
         {groups.map((g) => (
-          <div key={g.league} className="mb-6 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+          <div key={g.league} className="mb-6 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark shadow-sm">
             <div className="border-b border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">{g.league}</div>
             <div className="divide-y divide-gray-100 dark:divide-gray-600">
               {g.matches.map((m, i) => (

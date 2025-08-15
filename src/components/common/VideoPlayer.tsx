@@ -189,7 +189,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-10">
           <button
             onClick={onJoinClick}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105"
+            className="border-2 border-blue-600 bg-transparent hover:bg-blue-600 text-blue-600 hover:text-white font-medium px-4 py-2 rounded-full shadow-lg transition-all duration-200 transform hover:scale-105 text-sm"
           >
             VÀO PHÒNG LIVE
           </button>

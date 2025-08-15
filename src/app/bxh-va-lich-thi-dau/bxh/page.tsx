@@ -23,7 +23,7 @@ export default function StandingsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-8">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Bảng xếp hạng</h1>
           <p className="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">Xem bảng xếp hạng các giải đấu hàng đầu thế giới.</p>
@@ -32,7 +32,7 @@ export default function StandingsPage() {
 
       <section className="py-6">
         {groups.map((g) => (
-          <div key={g.league} className="mb-6 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
+          <div key={g.league} className="mb-6 overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark shadow-sm">
             <div className="border-b border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-4 py-3 text-sm font-semibold text-gray-900 dark:text-white">{g.league}</div>
             <div className="relative overflow-x-auto">
               <table className="w-full text-left text-sm">

@@ -90,7 +90,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onMo
 
   return (
     <div className="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-[9999] p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl w-full max-w-md mx-auto relative z-[10000]">
+      <div className="bg-white dark:bg-custom-dark rounded-xl shadow-2xl w-full max-w-md mx-auto relative z-[10000]">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -192,7 +192,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login', onMo
               <div className="w-full border-t border-gray-300 dark:border-gray-600" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">hoặc</span>
+              <span className="px-2 bg-white dark:bg-custom-dark text-gray-500 dark:text-gray-400">hoặc</span>
             </div>
           </div>
 

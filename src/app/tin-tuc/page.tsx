@@ -50,44 +50,44 @@ const CATS = ["Tất cả", "Bóng đá", "Chuyển nhượng", "Nhận định"
 export default function NewsListPage() {
   return (
     <>
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-        <div className="py-8">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Tin tức</h1>
-          <p className="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">Cập nhật tin nóng, phân tích và nhận định mới nhất.</p>
+      <section className="border-b border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
+        <div className="py-4 sm:py-6 md:py-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-custom-light">Tin tức</h1>
+          <p className="mt-2 max-w-2xl text-sm sm:text-base text-gray-600 dark:text-custom-subtle">Cập nhật tin nóng, phân tích và nhận định mới nhất.</p>
         </div>
       </section>
 
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-        <div className="py-3">
-          <div className="flex flex-wrap items-center gap-2">
+      <section className="border-b border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
+        <div className="py-2 sm:py-3">
+          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
             {CATS.map((c, i) => (
-              <button key={c} className={`rounded-full px-4 py-1.5 text-sm transition-colors ${i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"}`}>{c}</button>
+              <button key={c} className={`rounded-full px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 text-xs sm:text-sm transition-colors ${i === 0 ? "bg-blue-600 text-white" : "bg-gray-100 dark:bg-custom-dark-secondary text-gray-700 dark:text-custom-muted hover:bg-gray-200 dark:hover:bg-custom-subtle"}`}>{c}</button>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-6">
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="py-4 sm:py-6">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-5 sm:grid-cols-2 lg:grid-cols-2">
           {ARTICLES.map((a) => (
-            <article key={a.slug} className="overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm transition hover:shadow-md">
-              <Link href={`/tin-tuc/${a.slug}`} className="relative block aspect-[16/10] bg-white dark:bg-gray-700">
+            <article key={a.slug} className="overflow-hidden rounded-2xl border border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark shadow-sm transition hover:shadow-md">
+              <Link href={`/tin-tuc/${a.slug}`} className="relative block aspect-[16/10] bg-white dark:bg-custom-dark-secondary">
                 <Image src={a.img} alt={a.title} fill className="object-cover" />
               </Link>
-              <div className="p-4">
-                <div className="mb-1 text-xs text-gray-500 dark:text-gray-400">{a.category} • {a.date}</div>
-                <Link href={`/tin-tuc/${a.slug}`} className="line-clamp-2 text-base font-semibold text-gray-900 dark:text-white hover:underline">{a.title}</Link>
-                <p className="mt-1 line-clamp-2 text-sm text-gray-600 dark:text-gray-300">{a.excerpt}</p>
+              <div className="p-3 sm:p-4">
+                <div className="mb-1 text-xs text-gray-500 dark:text-custom-subtle">{a.category} • {a.date}</div>
+                <Link href={`/tin-tuc/${a.slug}`} className="line-clamp-2 text-sm sm:text-base font-semibold text-gray-900 dark:text-custom-light hover:underline">{a.title}</Link>
+                <p className="mt-1 line-clamp-2 text-xs sm:text-sm text-gray-600 dark:text-custom-muted">{a.excerpt}</p>
               </div>
             </article>
           ))}
         </div>
         {/* Pagination mock */}
-        <div className="mt-6 flex items-center justify-center gap-2">
-          <button className="rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors">Trước</button>
-          <button className="rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white">1</button>
-          <button className="rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors">2</button>
-          <button className="rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-1.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors">Sau</button>
+        <div className="mt-4 sm:mt-6 flex items-center justify-center gap-1 sm:gap-2">
+          <button className="rounded-md border border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary transition-colors">Trước</button>
+          <button className="rounded-md bg-blue-600 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold text-white">1</button>
+          <button className="rounded-md border border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary transition-colors">2</button>
+          <button className="rounded-md border border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary transition-colors">Sau</button>
         </div>
       </section>
     </>

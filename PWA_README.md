@@ -49,7 +49,6 @@ public/
 
 src/components/
 ├── PWAManager.tsx         # Quản lý PWA chính
-├── InstallPWA.tsx         # Component cài đặt
 └── Header.tsx             # Header với nút PWA
 ```
 

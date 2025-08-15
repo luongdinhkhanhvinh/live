@@ -68,8 +68,8 @@ export default async function PromoDetail({ params }: { params: Promise<{ slug: 
   const resolvedParams = await params;
   const data = PROMOS[resolvedParams.slug];
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+    <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-white">
+      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="mx-auto max-w-7xl px-4 py-8">
           <div className="mb-4 flex items-center gap-2 text-sm text-zinc-600 dark:text-gray-400">
             <Link href="/khuyen-mai" className="hover:underline">Khuyến mãi</Link>
@@ -86,7 +86,7 @@ export default async function PromoDetail({ params }: { params: Promise<{ slug: 
             <div className="relative mb-4 aspect-[16/9] overflow-hidden rounded-xl border border-zinc-200 dark:border-gray-700 bg-zinc-50 dark:bg-gray-700">
               {data && <Image src={data.img} alt="promo" fill className="object-contain p-8" />}
             </div>
-            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 text-sm text-zinc-700 dark:text-gray-300">
+            <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4 text-sm text-zinc-700 dark:text-gray-300">
               {data ? (
                 <ul className="list-disc space-y-2 pl-5">
                   {data.content.map((c, i) => (
@@ -100,14 +100,14 @@ export default async function PromoDetail({ params }: { params: Promise<{ slug: 
           </div>
           <aside className="lg:col-span-4">
             <div className="sticky top-20 space-y-4">
-              <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+              <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
                 <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Thông tin</div>
                 <div className="flex items-center gap-2 text-sm">
                   <span className="rounded bg-black px-2 py-1 text-[11px] font-semibold text-white">{data?.badge ?? "PROMO"}</span>
                   <span className="text-zinc-700 dark:text-gray-300">Ưu đãi đang diễn ra</span>
                 </div>
               </div>
-              <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4">
+              <div className="rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4">
                 <div className="mb-2 text-sm font-semibold text-zinc-900 dark:text-white">Tham gia ngay</div>
                 <button className="w-full rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">Nhận ưu đãi</button>
               </div>

@@ -33,7 +33,7 @@ function getDaysRange(center = new Date()) {
 
 function LiveChip({ href, label }: { href: string; label: string }) {
   return (
-    <Link href={href} className="inline-flex items-center gap-1 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-2 py-1 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors">
+    <Link href={href} className="inline-flex items-center gap-1 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark px-2 py-1 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors">
       <Image src="https://ext.same-assets.com/63664259/1602548579.png" alt="live" width={16} height={16} />
       <span>{label}</span>
     </Link>
@@ -91,7 +91,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-8">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Lịch trực tiếp bóng đá</h1>
           <p className="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">Xem lịch thi đấu và các trận đấu trực tiếp hôm nay.</p>
@@ -99,7 +99,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
       </section>
 
       {/* Date selector */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="py-3">
           <div className="flex items-center gap-2 overflow-x-auto">
             {days.map((d) => {
@@ -112,7 +112,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
                   className={`flex min-w-fit flex-col items-center rounded-lg border px-3 py-2 text-center transition-colors ${
                     isSelected
                       ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400"
-                      : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600"
+                      : "border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark text-gray-700 dark:text-gray-300 hover:border-gray-300 dark:hover:border-gray-600"
                   }`}
                 >
                   <span className="text-sm font-medium">{d.label}</span>
@@ -128,7 +128,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ [
       <section className="py-6">
         <div className="space-y-4">
           {schedule.map((match, i) => (
-            <div key={i} className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm">
+            <div key={i} className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-4 shadow-sm">
               <div className="mb-3 flex items-center justify-between">
                 <div className="text-sm text-gray-500 dark:text-gray-400">{match.league}</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">{match.time}</div>

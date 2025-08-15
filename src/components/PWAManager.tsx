@@ -85,19 +85,6 @@ export default function PWAManager({ children }: PWAManagerProps) {
           🔴 Bạn đang offline - Một số tính năng có thể không hoạt động
         </div>
       )}
-
-      {/* Notification Permission Request */}
-      {!isInstalled && (
-        <div className="fixed top-4 right-4 z-40">
-          <button
-            onClick={requestNotificationPermission}
-            className="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-2 rounded-lg shadow-lg transition-colors"
-            title="Bật thông báo"
-          >
-            🔔
-          </button>
-        </div>
-      )}
     </>
   );
 }

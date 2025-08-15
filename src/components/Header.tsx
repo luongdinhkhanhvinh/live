@@ -6,7 +6,6 @@ import { useState } from "react";
 import AuthModal from "./AuthModal";
 import { useTheme } from "./ThemeProvider";
 import { useScreenLock } from "./ScreenLockContext";
-import InstallPWA from "./InstallPWA";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,8 +39,8 @@ export default function Header() {
   return (
     <>
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-gray-900/70 shadow-sm">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-3">
+      <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-custom-dark-secondary bg-white/90 dark:bg-custom-dark/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-custom-dark/70 shadow-sm">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 py-3 px-4">
           <Link href="/" className="flex items-center gap-3">
             <Image 
               src="/ngoaihangtv.png" 
@@ -53,7 +52,7 @@ export default function Header() {
             />
           </Link>
           
-          <nav className="hidden md:flex items-center gap-5 text-sm font-semibold text-gray-700 dark:text-gray-300">
+          <nav className="hidden md:flex items-center gap-5 text-sm font-semibold text-gray-700 dark:text-custom-muted">
             <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">TRANG CHỦ</Link>
             <Link href="/lich-truc-tiep/bong-da" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">LỊCH TRỰC TIẾP</Link>
             <Link href="/ty-so-cac-tran-va-giai-dau" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">TỶ SỐ</Link>
@@ -70,12 +69,15 @@ export default function Header() {
               </button>
               
               {/* Dropdown Menu */}
-              <div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <Link href="/tin-tuc" className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-t-lg">
+              <div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-custom-dark border border-gray-200 dark:border-custom-dark-secondary rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link href="/tin-tuc" className="block px-4 py-3 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-t-lg">
                   TIN TỨC
                 </Link>
-                <Link href="/tuyen-dung" className="block px-4 py-3 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-b-lg">
+                <Link href="/tuyen-dung" className="block px-4 py-3 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   TUYỂN DỤNG
+                </Link>
+                <Link href="/dien-dan" className="block px-4 py-3 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary hover:text-blue-600 dark:hover:text-blue-400 transition-colors rounded-b-lg">
+                  DIỄN ĐÀN
                 </Link>
               </div>
             </div>
@@ -85,7 +87,7 @@ export default function Header() {
             {/* Theme toggle button */}
             <button 
               onClick={toggleTheme}
-              className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors"
+              className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 dark:hover:bg-custom-dark-secondary dark:text-custom-muted transition-colors"
               title={isDarkMode ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối"}
             >
               {isDarkMode ? (
@@ -101,14 +103,11 @@ export default function Header() {
               )}
             </button>
             
-            {/* PWA Install Button */}
-            <InstallPWA />
-            
             {/* Auth buttons */}
             <div className="hidden md:flex items-center gap-2">
               <button 
                 onClick={() => openAuthModal('login')}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 dark:text-custom-muted hover:bg-gray-100 dark:hover:bg-custom-dark-secondary transition-colors"
               >
                 ĐĂNG NHẬP
               </button>
@@ -123,7 +122,7 @@ export default function Header() {
             {/* Mobile menu button */}
             <button 
               onClick={toggleMobileMenu}
-              className="md:hidden rounded-lg p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="md:hidden rounded-lg p-2 text-gray-600 dark:text-custom-muted hover:bg-gray-100 dark:hover:bg-custom-dark-secondary transition-colors"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -134,69 +133,76 @@ export default function Header() {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+          <div className="md:hidden border-t border-gray-200 dark:border-custom-dark-secondary bg-white dark:bg-custom-dark">
             <div className="px-4 py-3 space-y-3">
               {/* Navigation Links */}
               <div className="space-y-2">
                 <Link 
                   href="/" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   TRANG CHỦ
                 </Link>
                 <Link 
                   href="/lich-truc-tiep/bong-da" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   LỊCH TRỰC TIẾP
                 </Link>
                 <Link 
                   href="/ty-so-cac-tran-va-giai-dau" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   TỶ SỐ
                 </Link>
                 <Link 
                   href="/bxh-va-lich-thi-dau/lich-thi-dau" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   BXH & LỊCH THI ĐẤU
                 </Link>
                 <Link 
                   href="/khuyen-mai" 
-                  className="block px-3 py-2 text-sm text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   KHUYẾN MÃI
                 </Link>
                 <Link 
                   href="/tin-tuc" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   TIN TỨC
                 </Link>
                 <Link 
                   href="/tuyen-dung" 
-                  className="block px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   TUYỂN DỤNG
                 </Link>
+                <Link 
+                  href="/dien-dan" 
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  DIỄN ĐÀN
+                </Link>
               </div>
               
               {/* Divider */}
-              <div className="border-t border-gray-200 dark:border-gray-700 my-3"></div>
+              <div className="border-t border-gray-200 dark:border-custom-dark-secondary my-3"></div>
               
               {/* Auth Buttons for Mobile */}
               <div className="flex gap-2">
                 <button 
                   onClick={() => openAuthModal('login')}
-                  className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors border border-gray-200 dark:border-gray-600"
+                  className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 dark:text-custom-muted bg-gray-100 dark:bg-custom-dark-secondary hover:bg-gray-200 dark:hover:bg-custom-subtle rounded-lg transition-colors border border-gray-200 dark:border-custom-dark-secondary"
                 >
                   Đăng nhập
                 </button>

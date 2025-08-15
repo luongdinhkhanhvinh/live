@@ -50,31 +50,31 @@ export default function PromotionsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-        <div className="py-8">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Khuyến mãi nổi bật</h1>
-          <p className="mt-2 max-w-2xl text-gray-600 dark:text-gray-300">Tổng hợp các chương trình ưu đãi hấp dẫn dành cho thành viên. Điều khoản áp dụng theo từng khuyến mãi.</p>
+      <section className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
+        <div className="py-4 sm:py-6 md:py-8">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Khuyến mãi nổi bật</h1>
+          <p className="mt-2 max-w-2xl text-sm sm:text-base text-gray-600 dark:text-gray-300">Tổng hợp các chương trình ưu đãi hấp dẫn dành cho thành viên. Điều khoản áp dụng theo từng khuyến mãi.</p>
         </div>
       </section>
 
       {/* Promo cards */}
-      <section className="py-6">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="py-4 sm:py-6">
+        <div className="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-2">
           {promos.map((p) => (
-            <div key={p.title} className="group rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-4 shadow-sm transition hover:shadow-md">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="rounded bg-red-500 px-2 py-1 text-[11px] font-semibold text-white">{p.badge}</span>
+            <div key={p.title} className="group rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-custom-dark p-3 sm:p-4 shadow-sm transition hover:shadow-md">
+              <div className="mb-2 sm:mb-3 flex items-center justify-between">
+                <span className="rounded bg-red-500 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold text-white">{p.badge}</span>
               </div>
-              <Link href={`/khuyen-mai/${p.slug}`} className="relative mb-3 block aspect-[16/9] overflow-hidden rounded-xl bg-white dark:bg-gray-700">
-                <Image src={p.img} alt="promo" fill className="object-contain p-6 transition group-hover:scale-[1.02]" />
+              <Link href={`/khuyen-mai/${p.slug}`} className="relative mb-2 sm:mb-3 block aspect-[16/9] overflow-hidden rounded-xl bg-white dark:bg-gray-700">
+                <Image src={p.img} alt="promo" fill className="object-contain p-4 sm:p-6 transition group-hover:scale-[1.02]" />
               </Link>
-              <Link href={`/khuyen-mai/${p.slug}`} className="text-base font-semibold text-gray-900 dark:text-white hover:underline">
+              <Link href={`/khuyen-mai/${p.slug}`} className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white hover:underline">
                 {p.title}
               </Link>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{p.desc}</p>
-              <div className="mt-3 flex gap-2">
-                <Link href={`/khuyen-mai/${p.slug}`} className="rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-1.5 text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-600 transition-colors">Chi tiết</Link>
-                <button className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-700 transition-colors">Nhận ưu đãi</button>
+              <p className="mt-1 text-xs sm:text-sm text-gray-600 dark:text-gray-300">{p.desc}</p>
+              <div className="mt-2 sm:mt-3 flex gap-1.5 sm:gap-2">
+                <Link href={`/khuyen-mai/${p.slug}`} className="rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-gray-800 dark:text-gray-200 hover:bg-white dark:hover:bg-gray-600 transition-colors">Chi tiết</Link>
+                <button className="rounded-lg bg-blue-600 px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-blue-700 transition-colors">Nhận ưu đãi</button>
               </div>
             </div>
           ))}

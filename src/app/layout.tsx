@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LiveLayout from "@/components/LiveLayout";
-import { Providers } from "@/components/Providers";
+import Providers from "@/components/Providers";
 import PWAManager from "@/components/PWAManager";
 
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className="h-full">
-      <body className="min-h-full antialiased bg-white dark:bg-gray-900 transition-colors duration-200">
+      <body className="min-h-full antialiased bg-white dark:bg-custom-dark transition-colors duration-200">
         <PWAManager>
           <Providers>
             <Header />

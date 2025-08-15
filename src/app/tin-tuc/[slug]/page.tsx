@@ -28,14 +28,14 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const resolvedParams = await params;
   const data = MAP[resolvedParams.slug];
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900 text-zinc-900 dark:text-white">
-      <header className="sticky top-0 z-40 border-b border-zinc-200 dark:border-gray-700 bg-white/90 dark:bg-gray-900/90 backdrop-blur">
+    <main className="min-h-screen bg-white dark:bg-custom-dark text-zinc-900 dark:text-white">
+      <header className="sticky top-0 z-40 border-b border-zinc-200 dark:border-gray-700 bg-white/90 dark:bg-custom-dark/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link href="/tin-tuc" className="text-sm font-semibold hover:underline">Tin tức</Link>
         </div>
       </header>
 
-      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <section className="border-b border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="mx-auto max-w-4xl px-4 py-8">
           <h1 className="text-3xl font-bold leading-snug">{data ? data.title : "Tin tức"}</h1>
           <div className="mt-2 text-sm text-zinc-600 dark:text-gray-400">{data?.date}</div>
@@ -67,7 +67,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {Object.entries(MAP)
             .filter(([slug]) => slug !== resolvedParams.slug)
             .map(([slug, a]) => (
-              <Link key={slug} href={`/tin-tuc/${slug}`} className="overflow-hidden rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-zinc-50 dark:hover:bg-gray-700">
+              <Link key={slug} href={`/tin-tuc/${slug}`} className="overflow-hidden rounded-xl border border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark hover:bg-zinc-50 dark:hover:bg-gray-700">
                 <div className="relative aspect-[16/9] bg-zinc-50 dark:bg-gray-700">
                   <Image src={a.img} alt={a.title} fill className="object-cover" />
                 </div>
@@ -80,7 +80,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <footer className="border-t border-zinc-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+      <footer className="border-t border-zinc-200 dark:border-gray-700 bg-white dark:bg-custom-dark">
         <div className="mx-auto max-w-7xl px-4 py-8 text-sm text-zinc-600 dark:text-gray-400">
           <div className="flex flex-wrap items-center gap-4">
             <Link href="/ban-quyen" className="hover:text-zinc-900 dark:hover:text-white">Bản quyền</Link>

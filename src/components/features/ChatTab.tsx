@@ -100,21 +100,20 @@ export default function ChatTab({ isLoggedIn, onOpenAuthModal }: ChatTabProps) {
         }}
       >
         {/* Messages */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {localChatMessages.map((msg) => (
-            <div key={msg.id} className="flex items-start space-x-3">
+            <div key={msg.id} className="flex items-start space-x-2">
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-semibold flex-shrink-0"
+                className="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-semibold flex-shrink-0"
                 style={{ backgroundColor: `hsl(${(msg.id * 137.5) % 360}, 70%, 50%)` }}
               >
                 {msg.avatar}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center space-x-2">
-                  <span className="font-semibold text-gray-900 dark:text-white text-sm">{msg.user}</span>
-                  <span className="text-gray-500 dark:text-gray-400 text-xs">{msg.time}</span>
+                <div className="flex items-baseline space-x-2">
+                  <span className="font-semibold text-gray-900 dark:text-white text-sm">{msg.user}:</span>
+                  <span className="text-gray-700 dark:text-gray-300 text-sm">{msg.message}</span>
                 </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mt-1">{msg.message}</p>
               </div>
             </div>
           ))}
@@ -126,7 +125,7 @@ export default function ChatTab({ isLoggedIn, onOpenAuthModal }: ChatTabProps) {
         {/* Login to comment card */}
         {!isLoggedIn && (
           <div
-            className="mt-4 p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm cursor-pointer relative z-20 hover:bg-white dark:hover:bg-gray-700 transition-colors"
+            className="mt-4 p-4 bg-white dark:bg-custom-dark border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm cursor-pointer relative z-20 hover:bg-white dark:hover:bg-gray-700 transition-colors"
             onClick={() => onOpenAuthModal('login')}
           >
             <div className="text-center">
@@ -140,9 +139,9 @@ export default function ChatTab({ isLoggedIn, onOpenAuthModal }: ChatTabProps) {
       </div>
 
       {/* Overlay mờ che toàn bộ content chat */}
-      {!isLoggedIn && (
-        <div className="absolute inset-0 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm pointer-events-none z-10" />
-      )}
+      {/* {!isLoggedIn && (
+        <div className="absolute inset-0 bg-white/90 dark:bg-custom-dark/90 backdrop-blur-sm pointer-events-none z-10" />
+      )} */}
 
       {/* Message Input - Chỉ hiện khi đã đăng nhập */}
       {isLoggedIn && (
@@ -161,7 +160,7 @@ export default function ChatTab({ isLoggedIn, onOpenAuthModal }: ChatTabProps) {
             <input
               ref={chatInputRef}
               type="text"
-              className="w-full rounded-lg border border-gray-200 dark:border-gray-600 pr-12 pl-3 py-2 text-sm outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all duration-200 bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              className="w-full rounded-lg border border-gray-200 dark:border-gray-600 pr-12 pl-6 py-2 px-4 text-sm outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900 transition-all duration-200 bg-white dark:bg-custom-dark text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               placeholder="Nhập tin nhắn..."
               value={message}
               onChange={(e) => setMessage(e.target.value)}
