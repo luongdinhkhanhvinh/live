@@ -41,23 +41,39 @@ export default function Header() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-gray-200 dark:border-custom-dark-secondary bg-white/90 dark:bg-custom-dark/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:supports-[backdrop-filter]:bg-custom-dark/70 shadow-sm">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 py-3 px-4">
-          <Link href="/" className="flex items-center gap-3">
-            <Image 
-              src="/ngoaihangtv.png" 
-              alt="NGOAIHANG TV Logo" 
-              width={120} 
-              height={32} 
-              priority 
-              style={{ width: 'auto', height: 'auto' }}
-            />
-          </Link>
+          {/* Left side: Mobile menu button + Logo */}
+          <div className="flex items-center gap-3">
+            {/* Mobile menu button - Left side */}
+            <button 
+              onClick={toggleMobileMenu}
+              className="md:hidden rounded-lg p-2 text-gray-600 dark:text-custom-muted hover:bg-gray-100 dark:hover:bg-custom-dark-secondary transition-colors"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3">
+              <Image 
+                src="/ngoaihangtv.png" 
+                alt="NGOAIHANG TV Logo" 
+                width={120} 
+                height={32} 
+                priority 
+                style={{ width: 'auto', height: 'auto' }}
+              />
+            </Link>
+          </div>
           
+          {/* Center: Navigation (hidden on mobile) */}
           <nav className="hidden md:flex items-center gap-5 text-sm font-semibold text-gray-700 dark:text-custom-muted">
             <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">TRANG CHỦ</Link>
             <Link href="/lich-truc-tiep/bong-da" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">LỊCH TRỰC TIẾP</Link>
             <Link href="/ty-so-cac-tran-va-giai-dau" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">TỶ SỐ</Link>
             <Link href="/bxh-va-lich-thi-dau/lich-thi-dau" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">BXH & LỊCH THI ĐẤU</Link>
             <Link href="/khuyen-mai" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">KHUYẾN MÃI</Link>
+            <Link href="/chat" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">CHAT</Link>
             
             {/* TIN TỨC & TUYỂN DỤNG Dropdown */}
             <div className="relative group">
@@ -83,6 +99,7 @@ export default function Header() {
             </div>
           </nav>
           
+          {/* Right side: Theme toggle + Auth buttons */}
           <div className="flex items-center gap-3">
             {/* Theme toggle button */}
             <button 
@@ -118,16 +135,6 @@ export default function Header() {
                 ĐĂNG KÝ
               </button>
             </div>
-            
-            {/* Mobile menu button */}
-            <button 
-              onClick={toggleMobileMenu}
-              className="md:hidden rounded-lg p-2 text-gray-600 dark:text-custom-muted hover:bg-gray-100 dark:hover:bg-custom-dark-secondary transition-colors"
-            >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -167,10 +174,17 @@ export default function Header() {
                 </Link>
                 <Link 
                   href="/khuyen-mai" 
-                  className="block px-3 py-2 text-sm text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary rounded-lg transition-colors"
+                  className="block px-3 py-2 text-sm text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   KHUYẾN MÃI
+                </Link>
+                <Link 
+                  href="/chat" 
+                  className="block px-3 py-2 text-sm text-gray-700 dark:text-custom-muted hover:bg-white dark:hover:bg-custom-dark-secondary hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  CHAT
                 </Link>
                 <Link 
                   href="/tin-tuc" 

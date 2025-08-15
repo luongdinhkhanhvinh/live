@@ -145,17 +145,7 @@ export default function MatchCard({
           
           {/* Left side - Competition */}
           <div className="absolute left-0 top-0 flex items-center gap-1 rounded-full border border-[#FF6601] px-1 py-0.5 bg-white">
-            <span className="size-5">
-              <img 
-                alt={match.competition}
-                loading="lazy"
-                width={20}
-                height={20}
-                className="bg-muted h-full w-full rounded-full object-contain"
-                src="https://upload.wikimedia.org/wikipedia/en/8/8c/Hanoi_FC_logo.png"
-              />
-            </span>
-            <p className="w-[80px] truncate text-xs font-normal uppercase xl:w-[120px] text-gray-900">
+            <p className="w-[80px] truncate text-xs font-normal uppercase xl:w-[120px] text-gray-900 px-1">
               {match.competition}
             </p>
           </div>

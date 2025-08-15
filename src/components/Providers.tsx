@@ -12,7 +12,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     // Simulate app loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // 3 giây loading
+    }, 1000); // 1 giây loading
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,7 +21,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     return (
       <LoadingScreen 
         onLoadingComplete={() => setIsLoading(false)}
-        minLoadingTime={2000}
+        minLoadingTime={1000}
       />
     );
   }

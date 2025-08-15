@@ -150,24 +150,24 @@ export default function HomePage() {
   return (
     <>
       {/* Top Banner - Chạy tràn toàn màn hình */}
-      <section className="w-full py-2">
+      <section className="py-2 banner-mobile-breakout">
         <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-2 sm:p-3 text-white text-center overflow-hidden relative">
           {/* Animated text container */}
           <div className="animate-marquee whitespace-nowrap">
             <span className="inline-block mr-8">
               <span className="text-sm font-bold">🔥 HOT</span>
-              <span className="text-xs ml-2">Chỉ có tại CakhiaTV</span>
+              <span className="text-xs ml-2">Chỉ có tại Ngoaihang TV</span>
               <span className="text-xs ml-2">
-                Liên hệ ngay CSKH tại CakhiaTV để nhận những phần quà và khuyến mãi hấp dẫn đặc quyền chỉ có tại OK9,
+                Liên hệ ngay CSKH tại Ngoaihang TV để nhận những phần quà và khuyến mãi hấp dẫn đặc quyền chỉ có tại KUDV,
                 <span className="font-bold"> BẢO HIỂM 100% ĐƠN CƯỢC ĐẦU TIÊN LÊN TỚI 1.888K</span>
               </span>
             </span>
             {/* Duplicate for seamless loop */}
             <span className="inline-block mr-8">
               <span className="text-sm font-bold">🔥 HOT</span>
-              <span className="text-xs ml-2">Chỉ có tại CakhiaTV</span>
+              <span className="text-xs ml-2">Chỉ có tại Ngoaihang TV</span>
               <span className="text-xs ml-2">
-                Liên hệ ngay CSKH tại CakhiaTV để nhận những phần quà và khuyến mãi hấp dẫn đặc quyền chỉ có tại OK9,
+                Liên hệ ngay CSKH tại Ngoaihang TV để nhận những phần quà và khuyến mãi hấp dẫn đặc quyền chỉ có tại KUDV,
                 <span className="font-bold"> BẢO HIỂM 100% ĐƠN CƯỢC ĐẦU TIÊN LÊN TỚI 1.888K</span>
               </span>
             </span>
@@ -190,8 +190,9 @@ export default function HomePage() {
                   muted={true}
                   volume={0.7}
                   theme="#0f1214"
-                  className="w-full match-card-enhanced"
+                  className="match-card-enhanced"
                   isJoin={true}
+                  breakOutContainer={true}
                   onJoinClick={() => {
                     window.location.href = '/truc-tiep/crystal-palace-vs-liverpool/giang-a-k/12345';
                   }}

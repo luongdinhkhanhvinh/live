@@ -18,15 +18,16 @@ type ArtInstance = {
 };
 
 interface VideoPlayerProps {
-  videoUrl?: string;
-  className?: string;
+  videoUrl: string;
   autoPlay?: boolean;
   muted?: boolean;
   volume?: number;
   theme?: string;
+  className?: string;
   showControls?: boolean;
   isJoin?: boolean;
   onJoinClick?: () => void;
+  breakOutContainer?: boolean; // New prop to break out of container
 }
 
 interface ArtPlayerOptions {
@@ -64,6 +65,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   showControls = true,
   isJoin = false,
   onJoinClick,
+  breakOutContainer = false,
 }) => {
   const [ready, setReady] = useState(false);
   const playerRef = useRef<HTMLDivElement | null>(null);
@@ -172,7 +174,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   }, [videoUrl, autoPlay, muted, volume, theme]);
 
   return (
-    <div className={`relative overflow-hidden bg-black ${className}`}>
+    <div className={`relative overflow-hidden bg-black ${className} ${breakOutContainer ? 'video-mobile-breakout' : ''}`}>
       <div className="aspect-video" ref={playerRef} />
       
       {/* Loading overlay */}
